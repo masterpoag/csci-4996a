@@ -24,12 +24,13 @@ signal on_client_packet(data: PackedByteArray)
 
 
 # Server Func
-func start_server(ip_address: String = "127.0.0.1", port: int = 42523) -> void:
+func start_server(ip_address: String = "192.168.1.115", port: int = 42069) -> void:
 	connection = ENetConnection.new()
 	var error: Error = connection.create_host_bound(ip_address,port)
 	if error:
 		print("Server Failed to start: ", error_string(error))
 	print("Server Started On: ",ip_address,":",port)
+	is_server = true
 
 func peer_connected(peer: ENetPacketPeer) -> void:
 	var peer_id: int = available_peer_ids.pop_back()
@@ -37,6 +38,7 @@ func peer_connected(peer: ENetPacketPeer) -> void:
 	client_peers[peer_id] = peer
 	print("Peer with ID: ",peer_id," Has connected")
 	on_peer_connection.emit(peer_id)
+	print("on_peer_connection sent")
 
 func peer_disconnect(peer: ENetPacketPeer) -> void:
 	var peer_id: int = peer.get_meta("id")
@@ -47,7 +49,7 @@ func peer_disconnect(peer: ENetPacketPeer) -> void:
 
 
 # Client Func
-func start_client(ip_address: String = "127.0.0.1", port: int = 42523) -> void:
+func start_client(ip_address: String = "192.168.1.115", port: int = 42069) -> void:
 	connection = ENetConnection.new()
 	var error: Error = connection.create_host(1)
 	if error:
@@ -55,7 +57,7 @@ func start_client(ip_address: String = "127.0.0.1", port: int = 42523) -> void:
 		connection = null
 		return
 	print("Connected To: ",ip_address,":",port)
-	is_server = true
+	server_peer = connection.connect_to_host(ip_address, port)
 
 func connected_to_server() -> void:
 	print("Connected to Server")

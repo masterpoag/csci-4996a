@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c6e5mcdg12kj4"]
+
+[ext_resource type="PackedScene" uid="uid://syya0tao1s0g" path="res://Networking/scenes/menu.tscn" id="1_5xndh"]
+[ext_resource type="PackedScene" uid="uid://2rvqmix1yho4" path="res://Networking/scenes/Network_player_spawner.tscn" id="2_k4wfd"]
+
+[node name="NetworkTest" type="Node2D" unique_id=622299983]
+
+[node name="Menu" parent="." unique_id=1592705593 instance=ExtResource("1_5xndh")]
+
+[node name="NetworkPlayerSpawner" parent="." unique_id=1311247478 instance=ExtResource("2_k4wfd")]

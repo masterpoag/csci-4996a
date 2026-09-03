@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 NetworkHandler="*uid://djbn3hkkq3fvl"
+ClientNetworkGlobal="*uid://dbikayxpcxhmt"
+ServerNetworkGlobal="*uid://00gvu6jlwtxj"
 
 [display]
 

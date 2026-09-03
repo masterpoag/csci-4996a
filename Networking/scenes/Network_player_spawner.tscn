@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://2rvqmix1yho4"]
+
+[ext_resource type="Script" uid="uid://d3h4aj413ctui" path="res://Networking/scripts/objects/network_player_spawner.gd" id="1_mp1p0"]
+
+[node name="NetworkPlayerSpawner" type="Node" unique_id=1311247478]
+script = ExtResource("1_mp1p0")
