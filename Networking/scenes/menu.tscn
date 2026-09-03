@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://syya0tao1s0g"]
+
+[ext_resource type="Script" uid="uid://d0sdtxn7x3ci" path="res://Menu.gd" id="1_mpb6p"]
+
+[node name="Menu" type="Control" unique_id=1592705593]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mpb6p")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1952280024]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=60790544]
+layout_mode = 2
+
+[node name="Server" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1554020642]
+layout_mode = 2
+text = "Host Hame"
+
+[node name="Client" type="Button" parent="MarginContainer/VBoxContainer" unique_id=761543650]
+layout_mode = 2
+text = "Join Game"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=596762648]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Server" to="." method="_on_server_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Client" to="." method="_on_client_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
