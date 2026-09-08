@@ -18,7 +18,6 @@ func _exit_tree() -> void:
 func _physics_process(delta: float) -> void:
 	if !is_authority: return
 	velocity = Input.get_vector("ui_left","ui_right","ui_up","ui_down") * SPEED
-	print(global_position)
 	move_and_slide()
 	PositionPacket.create(owner_id, global_position).send(NetworkHandler.server_peer)
 

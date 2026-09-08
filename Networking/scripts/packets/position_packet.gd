@@ -6,8 +6,8 @@ var pos: Vector2 # This is the data that needs to get encoded and sent
 static func create (id: int, data: Vector2) -> PositionPacket:
 	var info: PositionPacket = PositionPacket.new()
 	info.packet_type = PACKET_TYPE.POSITION
-	info.flag = ENetPacketPeer.FLAG_RELIABLE # TCP like
-#	info.flag = ENetPacketPeer.FLAG_UNSEQUENCED # UDP like
+#	info.flag = ENetPacketPeer.FLAG_RELIABLE # TCP like
+	info.flag = ENetPacketPeer.FLAG_UNSEQUENCED # UDP like
 	info.id = id
 	info.pos = data
 	return info
