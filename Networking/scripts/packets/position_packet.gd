@@ -1,20 +1,19 @@
-class_name PacketBase extends PacketInfo
-# all PacketBase need to get replaced with what the packet is
+class_name PositionPacket extends PacketInfo
 
 var id: int
 var pos: Vector2 # This is the data that needs to get encoded and sent
 
-static func create (id: int, data: Vector2) -> PacketBase:
-	var info: PacketBase = PacketBase.new()
-	info.packet_type = PACKET_TYPE.TEMP #ENUM from res://Networking/scripts/packets/packet_info.gd
+static func create (id: int, data: Vector2) -> PositionPacket:
+	var info: PositionPacket = PositionPacket.new()
+	info.packet_type = PACKET_TYPE.POSITION
 	info.flag = ENetPacketPeer.FLAG_RELIABLE # TCP like
 #	info.flag = ENetPacketPeer.FLAG_UNSEQUENCED # UDP like
 	info.id = id
-	info.temp = data 
+	info.pos = data
 	return info
 
-static func create_from_data(data: PackedByteArray) -> PacketBase:
-	var info: PacketBase = PacketBase.new()
+static func create_from_data(data: PackedByteArray) -> PositionPacket:
+	var info: PositionPacket = PositionPacket.new()
 	info.decode(data)
 	return info
 
@@ -28,5 +27,5 @@ func encode() -> PackedByteArray:
 
 func decode(data: PackedByteArray) -> void:
 	super.decode(data)
-	id = data.decode_double(1)
+	id = data.decode_u8(1)
 	pos = Vector2(data.decode_float(2),data.decode_float(6))

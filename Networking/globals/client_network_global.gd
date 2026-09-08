@@ -2,7 +2,7 @@ extends Node
 
 signal handle_local_id_assignment(local_id: int)
 signal handle_remote_id_assignment(remote_id: int)
-signal handle_player_position(player_position: PacketBase)
+signal handle_player_position(player_position: PositionPacket)
 
 var id: int = -1
 var remote_ids: Array[int]
@@ -15,8 +15,8 @@ func on_client_packet(data: PackedByteArray) -> void:
 	match packet_type:
 		PacketInfo.PACKET_TYPE.ID_ASSIGNMENT:
 			manage_ids(IDAssignment.create_from_data(data))
-		PacketInfo.PACKET_TYPE.TEMP:
-			handle_player_position.emit(PacketBase.create_from_data(data))
+		PacketInfo.PACKET_TYPE.POSITION:
+			handle_player_position.emit(PositionPacket.create_from_data(data))
 		_:
 			push_error("Packet type with index ",data[0], " Unhandled!")
 

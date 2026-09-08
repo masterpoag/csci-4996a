@@ -2,7 +2,7 @@ class_name PacketInfo
 
 enum PACKET_TYPE {
 	ID_ASSIGNMENT = 0,
-	TEMP = 10,
+	POSITION = 10,
 }
 
 var packet_type = PACKET_TYPE

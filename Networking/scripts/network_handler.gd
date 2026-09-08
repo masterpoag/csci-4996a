@@ -2,7 +2,7 @@ extends Node
 
 # Server Vars
 var available_peer_ids: Array = range(255,-1,-1)
-var client_peers: Dictionary[int, ENetPacketPeer]
+var client_peers: Dictionary[int, ENetPacketPeer] = {}
 
 # Client Vars
 var server_peer: ENetPacketPeer
@@ -24,11 +24,13 @@ signal on_client_packet(data: PackedByteArray)
 
 
 # Server Func
-func start_server(ip_address: String = "192.168.1.115", port: int = 42069) -> void:
+func start_server(ip_address: String = "0.0.0.0", port: int = 42069) -> void:
 	connection = ENetConnection.new()
 	var error: Error = connection.create_host_bound(ip_address,port)
 	if error:
 		print("Server Failed to start: ", error_string(error))
+		connection = null
+		return
 	print("Server Started On: ",ip_address,":",port)
 	is_server = true
 
@@ -49,7 +51,7 @@ func peer_disconnect(peer: ENetPacketPeer) -> void:
 
 
 # Client Func
-func start_client(ip_address: String = "192.168.1.115", port: int = 42069) -> void:
+func start_client(ip_address: String = "127.0.0.1", port: int = 42069) -> void:
 	connection = ENetConnection.new()
 	var error: Error = connection.create_host(1)
 	if error:

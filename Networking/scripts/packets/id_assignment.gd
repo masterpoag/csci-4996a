@@ -24,4 +24,11 @@ func encode() -> PackedByteArray:
 		var id: int = remoted_ids[i]
 		data.encode_u8(2+i, id)
 	return data
+
+func decode(data: PackedByteArray) -> void:
+	super.decode(data)
+	id = data.decode_u8(1)
+	remoted_ids.clear()
+	for index in range(2, data.size()):
+		remoted_ids.append(data.decode_u8(index))
 		
